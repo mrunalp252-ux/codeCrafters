@@ -77,11 +77,6 @@ export const ConsultationView: React.FC<ConsultationViewProps> = ({
   const [editableSoap, setEditableSoap] = useState<SoapCase | null>(null);
   const [doctorNotes, setDoctorNotes] = useState('');
 
-  // Initialize missing parameters & case draft when patient changes
-  useEffect(() => {
-    resetConsultation();
-  }, [patient.id]);
-
   const resetConsultation = () => {
     const initialFindings: ClinicalFinding = {
       chiefComplaint: 'Not provided',
@@ -117,6 +112,11 @@ export const ConsultationView: React.FC<ConsultationViewProps> = ({
     setEditableSoap(null);
     setIsEditingSoap(false);
   };
+
+  // Initialize missing parameters & case draft when patient changes
+  useEffect(() => {
+    resetConsultation();
+  }, [patient.id]);
 
   // Toggle voice recording
   const handleToggleRecord = () => {
